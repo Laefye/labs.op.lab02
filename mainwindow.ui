@@ -87,7 +87,7 @@
        <widget class="QGroupBox" name="groupBox">
         <property name="minimumSize">
          <size>
-          <width>181</width>
+          <width>208</width>
           <height>0</height>
          </size>
         </property>
@@ -99,7 +99,7 @@
           <rect>
            <x>10</x>
            <y>110</y>
-           <width>161</width>
+           <width>191</width>
            <height>21</height>
           </rect>
          </property>
@@ -112,7 +112,7 @@
           <rect>
            <x>10</x>
            <y>50</y>
-           <width>161</width>
+           <width>191</width>
            <height>21</height>
           </rect>
          </property>
@@ -135,7 +135,7 @@
           <rect>
            <x>70</x>
            <y>80</y>
-           <width>101</width>
+           <width>131</width>
            <height>22</height>
           </rect>
          </property>
@@ -164,8 +164,8 @@
           <rect>
            <x>10</x>
            <y>140</y>
-           <width>161</width>
-           <height>101</height>
+           <width>191</width>
+           <height>128</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="result">
@@ -176,8 +176,21 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="maximumValueLabel">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="minimumLabel">
+            <property name="minimumSize">
+             <size>
+              <width>72</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
              <string>Minimum</string>
             </property>
@@ -191,23 +204,16 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="minimumValueLabel">
-            <property name="text">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="maximumValueLabel">
-            <property name="text">
-             <string>0</string>
+           <widget class="QLineEdit" name="minimumValueLabel">
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLabel" name="medianValueLabel">
-            <property name="text">
-             <string>0</string>
+           <widget class="QLineEdit" name="medianValueLabel">
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
