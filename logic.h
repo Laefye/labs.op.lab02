@@ -3,7 +3,8 @@
 #include "context.h"
 #include "errors.h"
 #define MAX_LINE 200
-#define COUNT_FIELDS 7
+#define LAST_FIELD 7
+#define FIRST_FIELD 3
 
 void init(AppContext* context);
 void setFilename(AppContext* context, const char* filename);

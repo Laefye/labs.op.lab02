@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QStandardItemModel>
+#include <QMessageBox>
 #include "entrypoint.h"
 
 QT_BEGIN_NAMESPACE

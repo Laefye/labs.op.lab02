@@ -38,7 +38,7 @@ Error readAllRecords(AppContext* context, FILE* file) {
     DemographRecord record;
     while (!feof(file)) {
         int count = readRecord(file, &record);
-        if (count >= 0 && count != COUNT_FIELDS) {
+        if (count >= 0 && count != LAST_FIELD) {
             context->countCorruptedRecords++;
             continue;
         } else if (count < 0) {
@@ -117,14 +117,18 @@ void calculateMetrics(AppContext* context, struct DemographList* list) {
 
 Error calculate(AppContext* context, struct DemographList* output) {
     Error error = Error::None;
-    Node* node = context->records.first;
-    while (node) {
-        if (strlen(context->region) == 0 || (!strcmp(context->region, node->record.region))) {
-            listPush(output, &node->record);
+    if (context->column >= FIRST_FIELD && context->column <= LAST_FIELD) {
+        Node* node = context->records.first;
+        while (node) {
+            if (strlen(context->region) == 0 || (!strcmp(context->region, node->record.region))) {
+                listPush(output, &node->record);
+            }
+            node = node->next;
         }
-        node = node->next;
+        calculateMetrics(context, output);
+    } else {
+        error = Error::IncorrectColumn;
     }
-    calculateMetrics(context, output);
     return error;
 }
 

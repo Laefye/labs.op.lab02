@@ -4,6 +4,7 @@
 enum Error {
     None,
     NotFoundFile,
+    IncorrectColumn,
 };
 
 #endif // ERRORS_H

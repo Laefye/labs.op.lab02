@@ -69,6 +69,22 @@ void MainWindow::updateUi() {
     ui->medianValueLabel->setText(QString::number(context.metrics.median));
 }
 
+QString getErrorString(Error error) {
+    QString err;
+    switch (error) {
+    case Error::NotFoundFile:
+        err = "Not found file";
+        break;
+    case Error::IncorrectColumn:
+        err = "Incorrect column";
+        break;
+    default:
+        err = "None";
+        break;
+    }
+    return err;
+}
+
 void MainWindow::openFile() {
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFile);
@@ -87,13 +103,13 @@ void MainWindow::setFilename(const QString &filename) {
     updateUi();
 }
 
-#include <QMessageBox>
+
 
 void MainWindow::loadData() {
     Error error = doOperation(Operation::LoadData, &this->context, 0);
     if (error != Error::None) {
         QMessageBox box(this);
-        box.setText(QString::number(error));
+        box.setText(getErrorString(error));
         box.exec();
     }
     updateTable();
