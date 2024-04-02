@@ -4,12 +4,19 @@
 
 struct AppParams {
     const char* filename;
+    const char* region;
+    int column;
+    DemographList* calculateOutputList;
 };
 
 enum Operation {
     Init,
     SetFilename,
     LoadData,
+    ClearRecords,
+    Calculate,
+    SetCalculationRegion,
+    SetCalculationColumn,
 };
 
 Error doOperation(Operation operation, AppContext* context, AppParams* params);

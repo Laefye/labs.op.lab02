@@ -20,10 +20,15 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QStandardItemModel model;
     AppContext context;
     void updateUi();
+    void updateTable();
     void openFile();
     void setFilename(const QString& filename);
     void loadData();
+    void setRegion(const QString& filename);
+private slots:
+    void setColumn(int val);
 };
 #endif // MAINWINDOW_H

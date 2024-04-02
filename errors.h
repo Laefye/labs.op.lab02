@@ -4,7 +4,6 @@
 enum Error {
     None,
     NotFoundFile,
-    CorruptedFile,
 };
 
 #endif // ERRORS_H

@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     entrypoint.cpp \
+    list.cpp \
     logic.cpp \
     main.cpp \
     mainwindow.cpp
@@ -18,6 +19,7 @@ HEADERS += \
     context.h \
     entrypoint.h \
     errors.h \
+    list.h \
     logic.h \
     mainwindow.h
 
