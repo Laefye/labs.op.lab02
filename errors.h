@@ -3,7 +3,7 @@
 
 enum Error {
     None,
-    NotFoundFile,
+    FileIsNotOpened,
     IncorrectColumn,
 };
 

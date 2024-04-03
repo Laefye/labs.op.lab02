@@ -59,7 +59,7 @@ void MainWindow::updateTable() {
 }
 
 void MainWindow::updateUi() {
-    ui->filename->setText(context.filename);
+    ui->filename->setText(QString::fromLocal8Bit(context.filename));
     ui->countRecordsValue->setText(QString::number(context.records.count));
     ui->countCorruptedRecordsValue->setText(QString::number(context.countCorruptedRecords));
     ui->spinBoxColumn->setValue(context.column);
@@ -72,8 +72,8 @@ void MainWindow::updateUi() {
 QString getErrorString(Error error) {
     QString err;
     switch (error) {
-    case Error::NotFoundFile:
-        err = "Not found file";
+    case Error::FileIsNotOpened:
+        err = "File is not opened";
         break;
     case Error::IncorrectColumn:
         err = "Incorrect column";
@@ -96,9 +96,9 @@ void MainWindow::openFile() {
 }
 
 void MainWindow::setFilename(const QString &filename) {
-    std::string stdString = filename.toStdString();
+    QByteArray encoded = filename.toLocal8Bit();
     AppParams params;
-    params.filename = stdString.c_str();
+    params.filename = encoded.data();
     doOperation(Operation::SetFilename, &this->context, &params);
     updateUi();
 }

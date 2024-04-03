@@ -54,7 +54,7 @@ Error loadData(AppContext* context) {
     clearRecords(context);
     FILE* file = fopen(context->filename, "r");
     if (file == 0) {
-        error = Error::NotFoundFile;
+        error = Error::FileIsNotOpened;
     } else {
         error = readAllRecords(context, file);
         fclose(file);
@@ -105,9 +105,9 @@ void calculateMetrics(AppContext* context, struct DemographList* list) {
     while (node) {
         context->metrics.maximum = getColumnByIndex(&node->record, context->column) > context->metrics.maximum ? getColumnByIndex(&node->record, context->column) : context->metrics.maximum;
         context->metrics.minimum = getColumnByIndex(&node->record, context->column) < context->metrics.minimum ? getColumnByIndex(&node->record, context->column) : context->metrics.minimum;
-        if (!(list->count % 2) && i + 1 == list->count / 2) {
+        if (list->count % 2 && i == list->count / 2) {
             context->metrics.median = getColumnByIndex(&node->record, context->column);
-        } else if (list->count % 2 && i + 1 == list->count / 2) {
+        } else if (!(list->count % 2) && i + 1 == list->count / 2) {
             context->metrics.median = (getColumnByIndex(&node->record, context->column) + getColumnByIndex(&node->next->record, context->column)) / 2;
         }
         node = node->next;
