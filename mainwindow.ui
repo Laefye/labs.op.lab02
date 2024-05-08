@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>813</width>
-    <height>582</height>
+    <width>977</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -21,19 +21,19 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QPushButton" name="openFileDialog">
-      <property name="minimumSize">
+    <item row="1" column="0">
+     <widget class="QLabel" name="countRecords">
+      <property name="maximumSize">
        <size>
-        <width>120</width>
-        <height>0</height>
+        <width>16777215</width>
+        <height>30</height>
        </size>
       </property>
       <property name="styleSheet">
        <string notr="true">font-size: 16px</string>
       </property>
       <property name="text">
-       <string>Open CSV</string>
+       <string>Count Records</string>
       </property>
      </widget>
     </item>
@@ -44,7 +44,7 @@
         <property name="minimumSize">
          <size>
           <width>238</width>
-          <height>0</height>
+          <height>306</height>
          </size>
         </property>
         <property name="title">
@@ -64,19 +64,6 @@
          </property>
          <property name="text">
           <string>Calculate metrics</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="region">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>50</y>
-           <width>211</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">font-size: 16px</string>
          </property>
         </widget>
         <widget class="QLabel" name="regionLabel">
@@ -108,7 +95,7 @@
           <string notr="true">font-size: 16px</string>
          </property>
          <property name="minimum">
-          <number>3</number>
+          <number>1</number>
          </property>
          <property name="maximum">
           <number>7</number>
@@ -208,37 +195,36 @@
           </item>
          </layout>
         </widget>
+        <widget class="QComboBox" name="regionComboBox">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>50</y>
+           <width>211</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 16px</string>
+         </property>
+        </widget>
        </widget>
       </item>
      </layout>
     </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="countCorruptedRecords">
+    <item row="0" column="0">
+     <widget class="QPushButton" name="openFileDialog">
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">font-size: 16px</string>
       </property>
       <property name="text">
-       <string>Count Corrupted Records</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1" colspan="2">
-     <widget class="QLabel" name="countRecordsValue">
-      <property name="styleSheet">
-       <string notr="true">font-size: 16px</string>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1" colspan="2">
-     <widget class="QLabel" name="countCorruptedRecordsValue">
-      <property name="styleSheet">
-       <string notr="true">font-size: 16px</string>
-      </property>
-      <property name="text">
-       <string>0</string>
+       <string>Open CSV</string>
       </property>
      </widget>
     </item>
@@ -249,10 +235,13 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0" colspan="2">
-     <widget class="QTableView" name="tableView">
+    <item row="2" column="1" colspan="2">
+     <widget class="QLabel" name="countCorruptedRecordsValue">
       <property name="styleSheet">
        <string notr="true">font-size: 16px</string>
+      </property>
+      <property name="text">
+       <string>0</string>
       </property>
      </widget>
     </item>
@@ -272,13 +261,29 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="countRecords">
+    <item row="1" column="1" colspan="2">
+     <widget class="QLabel" name="countRecordsValue">
       <property name="styleSheet">
        <string notr="true">font-size: 16px</string>
       </property>
       <property name="text">
-       <string>Count Records</string>
+       <string>0</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="countCorruptedRecords">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px</string>
+      </property>
+      <property name="text">
+       <string>Count Corrupted Records</string>
       </property>
      </widget>
     </item>
@@ -289,7 +294,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>813</width>
+     <width>977</width>
      <height>28</height>
     </rect>
    </property>

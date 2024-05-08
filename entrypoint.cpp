@@ -22,7 +22,10 @@ Error doOperation(Operation operation, AppContext* context, AppParams* params) {
         setCalculationColumn(context, params->column);
         break;
     case Operation::Calculate:
-        error = calculate(context, params->calculateOutputList);
+        error = calculate(context, params->outputList);
+        break;
+    case Operation::GetRegions:
+        getRegions(context, params->outputList);
         break;
     }
     return error;

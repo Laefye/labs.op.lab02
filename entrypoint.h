@@ -6,7 +6,7 @@ struct AppParams {
     const char* filename;
     const char* region;
     int column;
-    DemographList* calculateOutputList;
+    DemographList* outputList;
 };
 
 enum Operation {
@@ -17,6 +17,7 @@ enum Operation {
     Calculate,
     SetCalculationRegion,
     SetCalculationColumn,
+    GetRegions,
 };
 
 Error doOperation(Operation operation, AppContext* context, AppParams* params);

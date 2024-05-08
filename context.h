@@ -3,6 +3,7 @@
 
 #define MAX_FILENAME 200
 #include <stddef.h>
+#include "metrics.h"
 #include "list.h"
 
 struct AppContext {
@@ -11,11 +12,7 @@ struct AppContext {
     char filename[MAX_FILENAME];
     char region[MAX_REGION];
     int column;
-    struct {
-        double minimum;
-        double maximum;
-        double median;
-    } metrics;
+    struct Metrics metrics;
 };
 
 #endif // CONTEXT_H

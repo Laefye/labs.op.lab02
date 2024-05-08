@@ -6,6 +6,7 @@
 #include <QStandardItemModel>
 #include <QMessageBox>
 #include "entrypoint.h"
+#include "graph.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,13 +19,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
 private:
     Ui::MainWindow *ui;
-    QStandardItemModel model;
+    Graph* graph;
     AppContext context;
     void updateUi();
-    void updateTable();
+    void updateView();
+    void updateRegions();
     void openFile();
     void setFilename(const QString& filename);
     void loadData();

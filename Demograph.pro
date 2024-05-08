@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     entrypoint.cpp \
+    graph.cpp \
     list.cpp \
     logic.cpp \
     main.cpp \
@@ -19,9 +20,11 @@ HEADERS += \
     context.h \
     entrypoint.h \
     errors.h \
+    graph.h \
     list.h \
     logic.h \
-    mainwindow.h
+    mainwindow.h \
+    metrics.h
 
 FORMS += \
     mainwindow.ui

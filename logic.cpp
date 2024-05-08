@@ -8,7 +8,7 @@ void init(AppContext* context) {
     context->region[0] = 0;
     context->column = 3;
     context->records = listNew();
-    context->metrics = {.minimum = 0, .maximum = 0, .median = 0};
+    context->metrics = {.minimumYear = 0, .maximumYear = 0, .minimum = 0, .maximum = 0, .median = 0};
     clearRecords(context);
 }
 
@@ -67,42 +67,24 @@ void clearRecords(AppContext* context) {
     context->countCorruptedRecords = 0;
 }
 
-double getColumnByIndex(DemographRecord* record, int index) {
-    double value = 0;
-    switch (index) {
-    case 3:
-        value = record->npg;
-        break;
-    case 4:
-        value = record->birth_rate;
-        break;
-    case 5:
-        value = record->death_rate;
-        break;
-    case 6:
-        value = record->gdw;
-        break;
-    case 7:
-        value = record->urbanization;
-        break;
-    default:
-        break;
-    }
-    return value;
-}
-
 void calculateMetrics(AppContext* context, struct DemographList* list) {
     Node* node = list->first;
     if (node) {
+        context->metrics.minimumYear = node->record.year;
+        context->metrics.maximumYear = node->record.year;
         context->metrics.maximum = getColumnByIndex(&node->record, context->column);
         context->metrics.minimum = getColumnByIndex(&node->record, context->column);
     }  else {
+        context->metrics.minimumYear = 0;
+        context->metrics.maximumYear = 0;
         context->metrics.maximum = 0;
         context->metrics.minimum = 0;
         context->metrics.median = 0;
     }
     int i = 0;
     while (node) {
+        context->metrics.maximumYear = node->record.year > context->metrics.maximumYear ? node->record.year : context->metrics.maximumYear;
+        context->metrics.minimumYear = node->record.year < context->metrics.minimumYear ? node->record.year : context->metrics.minimumYear;
         context->metrics.maximum = getColumnByIndex(&node->record, context->column) > context->metrics.maximum ? getColumnByIndex(&node->record, context->column) : context->metrics.maximum;
         context->metrics.minimum = getColumnByIndex(&node->record, context->column) < context->metrics.minimum ? getColumnByIndex(&node->record, context->column) : context->metrics.minimum;
         if (list->count % 2 && i == list->count / 2) {
@@ -117,7 +99,7 @@ void calculateMetrics(AppContext* context, struct DemographList* list) {
 
 Error calculate(AppContext* context, struct DemographList* output) {
     Error error = Error::None;
-    if (context->column >= FIRST_FIELD && context->column <= LAST_FIELD) {
+    if (context->column == YEAR_FIELD || (context->column >= FIRST_FIELD && context->column <= LAST_FIELD)) {
         Node* node = context->records.first;
         while (node) {
             if (strlen(context->region) == 0 || (!strcmp(context->region, node->record.region))) {
@@ -138,4 +120,27 @@ void setCalculationRegion(AppContext* context, const char* region) {
 
 void setCalculationColumn(AppContext* context, int column) {
     context->column = column;
+}
+
+int hasRegionInList(struct DemographList* output, char* region) {
+    int contains = 0;
+    Node* node = output->first;
+    while (node) {
+        if (strcmp(node->record.region, region) == 0) {
+            contains = 1;
+            break;
+        }
+        node = node->next;
+    }
+    return contains;
+}
+
+void getRegions(AppContext* context, struct DemographList* output) {
+    Node* node = context->records.first;
+    while (node) {
+        if (!hasRegionInList(output, node->record.region)) {
+            listPush(output, &node->record);
+        }
+        node = node->next;
+    }
 }

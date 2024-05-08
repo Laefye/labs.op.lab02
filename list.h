@@ -13,8 +13,11 @@ struct DemographRecord {
     double urbanization;
 };
 
+double getColumnByIndex(DemographRecord* record, int index);
+
 struct Node {
     struct Node* next;
+    struct Node* prev;
     struct DemographRecord record;
 };
 
