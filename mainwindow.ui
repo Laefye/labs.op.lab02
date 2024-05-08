@@ -12,7 +12,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>806</width>
+    <width>900</width>
     <height>576</height>
    </size>
   </property>
@@ -63,7 +63,7 @@
           <string notr="true">font-size: 16px</string>
          </property>
          <property name="text">
-          <string>Calculate metrics</string>
+          <string>Calculate and Draw</string>
          </property>
         </widget>
         <widget class="QLabel" name="regionLabel">
